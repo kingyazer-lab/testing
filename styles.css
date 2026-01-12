@@ -1,0 +1,827 @@
+/* SoloDay 重构版样式 - 极简MUJI+Apple风格 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 页面容器 */
+.page {
+    display: none;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.page.active {
+    display: block;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 开始页面 */
+.start-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.app-title {
+    font-size: 32px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 48px;
+}
+
+.start-form {
+    width: 100%;
+    max-width: 280px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #007AFF;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.primary-btn:hover {
+    background-color: #0051D5;
+}
+
+.start-hint {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 16px;
+}
+
+/* 首页状态展示 */
+.status-display {
+    text-align: center;
+    margin: 32px 0 16px;
+}
+
+.status-label {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.status-text {
+    font-size: 24px;
+    font-weight: 300;
+    color: #333;
+}
+
+.status-description {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.status-description p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 主标题 */
+.main-title {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* 今日卡片 */
+.today-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.today-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.today-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-right: 16px;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-content h3 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.card-action-btn {
+    background: none;
+    border: 1px solid #007AFF;
+    color: #007AFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.card-action-btn:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+/* 允许感文案 */
+.permission-text {
+    text-align: center;
+    padding: 24px 0;
+}
+
+.permission-text p {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
+}
+
+/* 页面头部 */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    background: white;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 8px;
+}
+
+.page-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+}
+
+/* 吃什么页面 */
+.section-title {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.eat-advice {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.eat-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.option-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 12px;
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    border-color: #007AFF;
+    background-color: #f8f9ff;
+}
+
+.btn-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.btn-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.shopping-list {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.list-title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.list-content ul {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.list-content li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f8f8f8;
+    color: #666;
+}
+
+.refresh-btn {
+    background: none;
+    border: 1px solid #e0e0e0;
+    color: #666;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+    border-color: #007AFF;
+    color: #007AFF;
+}
+
+/* 清洁页面 */
+.clean-advice-section {
+    margin-bottom: 24px;
+}
+
+.clean-scene {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.clean-scene h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.clean-duration {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 16px;
+}
+
+.clean-prompt {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.clean-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.secondary-btn {
+    flex: 1;
+    padding: 16px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    color: #666;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-btn:hover {
+    border-color: #999;
+    color: #333;
+}
+
+.clean-feedback {
+    text-align: center;
+    padding: 24px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.feedback-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.feedback-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.back-home-btn {
+    background: none;
+    border: 1px solid #007AFF;
+    color: #007AFF;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-home-btn:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+/* 用品补给页面 */
+.supplies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.supply-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.supply-name {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.supply-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 12px;
+    color: #007AFF;
+    background: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.supply-cycle {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.supply-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.add-supply-btn {
+    background: none;
+    border: 1px solid #007AFF;
+    color: #007AFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.add-supply-btn:hover {
+    background-color: #007AFF;
+    color: white;
+}
+
+.add-supply-btn:disabled {
+    background-color: #f5f5f5;
+    color: #ccc;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+/* 我的页面 */
+.status-adjustment-section {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.status-selector {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.status-btn {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    border-radius: 50%;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.status-btn.active {
+    background: #007AFF;
+    color: white;
+    border-color: #007AFF;
+}
+
+.status-btn:hover:not(.active) {
+    border-color: #007AFF;
+    color: #007AFF;
+}
+
+.status-selector-hint {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+}
+
+.profile-section {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.rhythm-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.settings-section {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-label {
+    font-size: 16px;
+    color: #333;
+}
+
+.about-section {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.about-content {
+    margin-bottom: 16px;
+}
+
+.about-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.about-btn {
+    background: none;
+    border: 1px solid #e0e0e0;
+    color: #666;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.about-btn:hover {
+    border-color: #007AFF;
+    color: #007AFF;
+}
+
+/* 开关组件 */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007AFF;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* 底部导航 */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    z-index: 1000;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #999;
+}
+
+.nav-item.active {
+    color: #007AFF;
+}
+
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-text {
+    font-size: 12px;
+}
+
+/* 消息提示 */
+.info-message, .success-message, .error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 2000;
+    animation: slideDown 0.3s ease;
+}
+
+.info-message {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+}
+
+.success-message {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .page-header {
+        padding: 12px 20px;
+    }
+    
+    .today-card {
+        padding: 16px;
+    }
+    
+    .card-icon {
+        font-size: 28px;
+        margin-right: 12px;
+    }
+    
+    .card-content h3 {
+        font-size: 16px;
+    }
+    
+    .card-action-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .eat-options {
+        flex-direction: column;
+    }
+    
+    .clean-actions {
+        flex-direction: column;
+    }
+    
+    .primary-btn, .secondary-btn {
+        padding: 14px;
+    }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+    
+    .input-field {
+        background-color: #2a2a2a;
+        border-color: #444;
+        color: #f0f0f0;
+    }
+    
+    .today-card, .clean-scene, .shopping-list, .supply-card, 
+    .profile-section, .settings-section, .about-section,
+    .status-adjustment-section {
+        background: #2a2a2a;
+    }
+    
+    .page-header {
+        background: #2a2a2a;
+        border-bottom-color: #444;
+    }
+    
+    .bottom-nav {
+        background: #2a2a2a;
+        border-top-color: #444;
+    }
+    
+    .secondary-btn {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #f0f0f0;
+    }
+    
+    .tag {
+        background: #1a3a5f;
+        color: #87ceeb;
+    }
+}

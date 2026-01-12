@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA配置测试</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .success { background: #e8f5e8; border-color: #4caf50; }
+        .error { background: #ffeaea; border-color: #f44336; }
+        .info { background: #e3f2fd; border-color: #2196f3; }
+    </style>
+</head>
+<body>
+    <h1>SoloDay PWA配置测试</h1>
+    
+    <div id="test-results"></div>
+    
+    <script>
+        const results = document.getElementById('test-results');
+        
+        // 测试Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration().then(registration => {
+                const div = document.createElement('div');
+                div.className = 'test-item ' + (registration ? 'success' : 'error');
+                div.innerHTML = `<strong>Service Worker:</strong> ${registration ? '已注册' : '未注册'}`;
+                results.appendChild(div);
+            });
+        } else {
+            const div = document.createElement('div');
+            div.className = 'test-item error';
+            div.innerHTML = '<strong>Service Worker:</strong> 浏览器不支持';
+            results.appendChild(div);
+        }
+        
+        // 测试Manifest
+        fetch('manifest.json')
+            .then(response => response.json())
+            .then(manifest => {
+                const div = document.createElement('div');
+                div.className = 'test-item success';
+                div.innerHTML = `<strong>Manifest:</strong> 已找到 - ${manifest.name} (${manifest.short_name})`;
+                results.appendChild(div);
+            })
+            .catch(() => {
+                const div = document.createElement('div');
+                div.className = 'test-item error';
+                div.innerHTML = '<strong>Manifest:</strong> 未找到';
+                results.appendChild(div);
+            });
+        
+        // 测试图标
+        ['icon-192.png', 'icon-512.png'].forEach(icon => {
+            fetch(`assets/images/${icon}`)
+                .then(response => {
+                    const div = document.createElement('div');
+                    div.className = 'test-item ' + (response.ok ? 'success' : 'error');
+                    div.innerHTML = `<strong>图标 ${icon}:</strong> ${response.ok ? '已找到' : '未找到'}`;
+                    results.appendChild(div);
+                })
+                .catch(() => {
+                    const div = document.createElement('div');
+                    div.className = 'test-item error';
+                    div.innerHTML = `<strong>图标 ${icon}:</strong> 加载失败`;
+                    results.appendChild(div);
+                });
+        });
+        
+        // PWA安装提示
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            const div = document.createElement('div');
+            div.className = 'test-item info';
+            div.innerHTML = '<strong>PWA安装:</strong> 可以安装（已阻止默认提示）';
+            results.appendChild(div);
+        });
+    </script>
+</body>
+</html>

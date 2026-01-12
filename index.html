@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoloDay - 一人生活</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA配置 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fafafa">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="SoloDay">
+    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+    
+    <!-- 防止浏览器缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <!-- 开始页面 -->
+    <div id="start-page" class="page active">
+        <div class="container">
+            <div class="start-content">
+                <h1 class="app-title">SoloDay</h1>
+                <p class="app-subtitle">一人生活，简单就好</p>
+                <div class="start-form">
+                    <input type="text" id="nickname" placeholder="输入昵称（可选）" class="input-field">
+                    <button id="start-btn" class="primary-btn">直接开始</button>
+                </div>
+                <p class="start-hint">进入即用，数据保存在本地</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 首页：今日生活 -->
+    <div id="home-page" class="page">
+        <div class="container">
+            <!-- 状态展示（只展示，不可操作） -->
+            <div class="status-display">
+                <p class="status-label">今天看起来：</p>
+                <p class="status-text" id="status-text">稳</p>
+            </div>
+            
+            <!-- 状态说明 -->
+            <div class="status-description">
+                <p id="status-description">今天状态不错，保持平稳的节奏就好。</p>
+            </div>
+
+            <!-- 今日三件事 -->
+            <div class="today-section">
+                <h1 class="main-title">今天，做这三件就够了</h1>
+                <div class="today-cards">
+                    <div class="today-card" data-action="eat">
+                        <div class="card-icon">🍳</div>
+                        <div class="card-content">
+                            <h3>吃一顿简单的</h3>
+                            <p class="card-subtitle">15 分钟 · 一人份</p>
+                        </div>
+                        <button class="card-action-btn">看看今天吃什么</button>
+                    </div>
+                    <div class="today-card" data-action="clean">
+                        <div class="card-icon">🧽</div>
+                        <div class="card-content">
+                            <h3>清洁一点点</h3>
+                            <p class="card-subtitle">10–15 分钟就够</p>
+                        </div>
+                        <button class="card-action-btn">我现在做</button>
+                    </div>
+                    <div class="today-card" data-action="relax">
+                        <div class="card-icon">🌿</div>
+                        <div class="card-content">
+                            <h3>放松一下</h3>
+                            <p class="card-subtitle">停 10 分钟就好</p>
+                        </div>
+                        <button class="card-action-btn">开始休息</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 允许感文案 -->
+            <div class="permission-text">
+                <p>允许自己慢慢来，简单的生活也很好。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 吃什么页面 -->
+    <div id="eat-page" class="page">
+        <div class="page-header">
+            <button class="back-btn">←</button>
+            <h1 class="page-title">吃什么</h1>
+        </div>
+        <div class="container">
+            <div class="today-eat-section">
+                <h2 class="section-title">今日饮食建议</h2>
+                <div class="eat-advice" id="today-eat-advice">
+                    今天适合吃一碗热汤面，加些青菜和一个鸡蛋。简单，温暖，不麻烦。
+                </div>
+            </div>
+            
+            <div class="eat-options">
+                <button class="option-btn" id="today-what-eat">
+                    <span class="btn-icon">🍽️</span>
+                    <span class="btn-text">今日吃什么</span>
+                </button>
+                <button class="option-btn" id="week-eat-plan">
+                    <span class="btn-icon">📅</span>
+                    <span class="btn-text">本周3天简单吃</span>
+                </button>
+            </div>
+
+            <div class="shopping-list" id="shopping-list" style="display: none;">
+                <h3 class="list-title">购物清单</h3>
+                <div class="list-content">
+                    <ul id="shopping-items">
+                        <li>面条 500g</li>
+                        <li>鸡蛋 6个</li>
+                        <li>小青菜 一把</li>
+                        <li>西红柿 2个</li>
+                    </ul>
+                </div>
+                <button class="refresh-btn" id="refresh-list">🔄 刷新清单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 清洁一下页面 -->
+    <div id="clean-page" class="page">
+        <div class="page-header">
+            <button class="back-btn">←</button>
+            <h1 class="page-title">清洁一下</h1>
+        </div>
+        <div class="container">
+            <div class="clean-advice-section">
+                <div class="clean-scene" id="clean-scene">
+                    <h3>厨房台面</h3>
+                    <div class="clean-duration">建议时长：10-15分钟</div>
+                    <div class="clean-prompt" id="clean-prompt">
+                        台面看起来有些杂乱，简单的擦拭就能让厨房看起来更舒服。
+                    </div>
+                </div>
+            </div>
+
+            <div class="clean-actions">
+                <button class="primary-btn" id="do-clean-now">我现在做</button>
+                <button class="secondary-btn" id="remind-later">晚点提醒我</button>
+            </div>
+
+            <div class="clean-feedback" id="clean-feedback" style="display: none;">
+                <div class="feedback-icon">✨</div>
+                <div class="feedback-text" id="feedback-text">
+                    可以了，今天不用再管这个
+                </div>
+                <button class="back-home-btn" id="back-home">返回首页</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用品补给页面 -->
+    <div id="supplies-page" class="page">
+        <div class="page-header">
+            <button class="back-btn">←</button>
+            <h1 class="page-title">用品补给</h1>
+        </div>
+        <div class="container">
+            <div class="supplies-list">
+                <div class="supply-card">
+                    <div class="supply-info">
+                        <h3 class="supply-name">温和洗面奶</h3>
+                        <div class="supply-tags">
+                            <span class="tag">一人份</span>
+                            <span class="tag">不浪费</span>
+                            <span class="tag">好收纳</span>
+                        </div>
+                        <div class="supply-cycle">建议使用周期：2个月</div>
+                        <p class="supply-desc">温和不刺激，适合日常使用，小包装不易过期。</p>
+                    </div>
+                    <button class="add-supply-btn">加入下次补给</button>
+                </div>
+
+                <div class="supply-card">
+                    <div class="supply-info">
+                        <h3 class="supply-name">厨房湿巾</h3>
+                        <div class="supply-tags">
+                            <span class="tag">一人份</span>
+                            <span class="tag">不浪费</span>
+                            <span class="tag">好收纳</span>
+                        </div>
+                        <div class="supply-cycle">建议使用周期：1个月</div>
+                        <p class="supply-desc">清洁台面很方便，抽取式设计，用完即弃。</p>
+                    </div>
+                    <button class="add-supply-btn">加入下次补给</button>
+                </div>
+
+                <div class="supply-card">
+                    <div class="supply-info">
+                        <h3 class="supply-name">速溶咖啡</h3>
+                        <div class="supply-tags">
+                            <span class="tag">一人份</span>
+                            <span class="tag">好收纳</span>
+                        </div>
+                        <div class="supply-cycle">建议使用周期：3个月</div>
+                        <p class="supply-desc">小包装，冲泡简单，不用担心开封后变质。</p>
+                    </div>
+                    <button class="add-supply-btn">加入下次补给</button>
+                </div>
+
+                <div class="supply-card">
+                    <div class="supply-info">
+                        <h3 class="supply-name">垃圾袋</h3>
+                        <div class="supply-tags">
+                            <span class="tag">一人份</span>
+                            <span class="tag">不浪费</span>
+                            <span class="tag">好收纳</span>
+                        </div>
+                        <div class="supply-cycle">建议使用周期：2个月</div>
+                        <p class="supply-desc">小号设计，适合一人使用，不易堆积异味。</p>
+                    </div>
+                    <button class="add-supply-btn">加入下次补给</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 我的页面 -->
+    <div id="profile-page" class="page">
+        <div class="page-header">
+            <h1 class="page-title">我的</h1>
+        </div>
+        <div class="container">
+            <!-- 状态调整入口 -->
+            <div class="status-adjustment-section">
+                <h2 class="section-title">状态调整</h2>
+                <div class="status-selector">
+                    <button class="status-btn active" data-status="steady">稳</button>
+                    <button class="status-btn" data-status="tired">累</button>
+                    <button class="status-btn" data-status="messy">乱</button>
+                    <button class="status-btn" data-status="empty">空</button>
+                </div>
+                <p class="status-selector-hint">选择当前状态，获取更贴合的建议</p>
+            </div>
+
+            <div class="profile-section">
+                <h2 class="section-title">当前生活节奏</h2>
+                <div class="rhythm-info">
+                    <div class="rhythm-text" id="rhythm-text">
+                        你的生活节奏平稳，平均每2天查看一次吃什么建议。
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2 class="section-title">设置</h2>
+                <div class="setting-item">
+                    <span class="setting-label">清洁提醒</span>
+                    <label class="switch">
+                        <input type="checkbox" id="clean-reminder" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">饮食建议</span>
+                    <label class="switch">
+                        <input type="checkbox" id="food-reminder" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="section-title">关于产品</h2>
+                <div class="about-content">
+                    <p>SoloDay 是为一个人长期生活的人设计的生活方式系统。</p>
+                    <p>我们相信，简单的生活也可以很美好。</p>
+                    <p>没有打卡，没有压力，只有安静的建议。</p>
+                </div>
+                <button class="about-btn" id="about-product">了解更多</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav id="bottom-nav" class="bottom-nav" style="display: none;">
+        <button class="nav-item active" data-page="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">今日</span>
+        </button>
+        <button class="nav-item" data-page="eat">
+            <span class="nav-icon">🍜</span>
+            <span class="nav-text">吃什么</span>
+        </button>
+        <button class="nav-item" data-page="clean">
+            <span class="nav-icon">🧹</span>
+            <span class="nav-text">清洁</span>
+        </button>
+        <button class="nav-item" data-page="supplies">
+            <span class="nav-icon">📦</span>
+            <span class="nav-text">补给</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">我的</span>
+        </button>
+    </nav>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    
+    <!-- Service Worker注册 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
